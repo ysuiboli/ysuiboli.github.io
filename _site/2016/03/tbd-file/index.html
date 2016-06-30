@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="卢克" />
+    <title>关于Xcode7中的tbd文件 | 卢克</title>
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/APr59wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiAAAiIiIiIiIAACIiIiIiIgERERERERIiAREREREREiIBERERERESIgERIiIiERIiAREiIiIREiIBESIhERESIgERIiERERIiAREiIiIiIiIBESIiIiIiIgERIiIiIiIiAREREREREAABEREREREQAAERERERERAADgAQAA4AEAAOABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAA8AAAAPAAAADwAA" rel="icon" type="image/x-icon" />
+    <link href="/feed/" rel="alternate" title="卢克" type="application/atom+xml" />
+    
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <link href='/media/webfonts/ss-social.css' rel='stylesheet'>
+    <link href='/media/webfonts/ss-standard.css' rel='stylesheet'>
+    <link href="/media/css/screen.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <div class="buttons">
+          <a href="/" class="ss-icon" title="Go to homepage">home</a>
+          <a href="/categories" class="ss-icon" title="Category" >list</a>
+          <a href="/tags" class="ss-icon" title="Tag Cloud" >tags</a>
+          <a href="/guestbook" class="ss-icon" title="Guest Book" >talk</a>
+          <a href="/about" class="ss-icon" title="About" >user</a>
+          <a href="/feed" class="ss-icon" title="Subscribe by RSS" >rss</a>
+        </div>
+        <h1>关于Xcode7中的tbd文件</h1>
+        </header>
+        <hr>
+        <article class="content">
+        <section class="post">
+<p><img src="http://ww3.sinaimg.cn/large/65cc0af7jw1f2gfe8bc7yj20ax0ckwg6.jpg" style="width: 50%; height: 50%" />​</p>
+
+<p>tbd 是 <strong>text-based stub libraries</strong>的意思，
+是苹果在Xcode7中使用的一个技术，便于减少Xcode7中SDK的体积。 <br />
+下面讲解下Xcode7如何通过tbd这个技术减少SDK的大小的。
+Xcode7中和各个平台相关的sdk都在<code>/Applications/Xcode.app/Contents/Developer/Platforms</code> 这个目录下，你可以看到如下的一些平台：</p>
+
+<p>这里列出了平台的名字 以及对应的动态链接库所需要的架构</p>
+
+<pre><code>MacOSX (i386,x86_64)
+iPhoneOS (armv7, armv7s, arm64)
+iPhoneSimulator (i386,x86_64)
+AppleTVOS (arm64)
+AppleTVSimulator (x86_64)
+WatchOS (armv7k)
+WatchSimulator (i386)
+</code></pre>
+
+<p>每个平台的SDK都在对应的<code>Developer/SDKs/</code>的子目录下，比如iPhoneOS的sdk在<code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk</code>下，
+每一个SDK目录下都会包含相应的<strong>动态Framework</strong>以及<strong>dylib</strong>库,分别在SDK目录下的<code>System/Library/Frameworks</code>和<code>/usr/lib</code>目录下。 <br />
+在使用tbd之前不管是哪个平台，Framework以及各个单独的dylib库的二进制都得放进来，数量多，体积大。但是真正有必要的其实只是各个模拟器要用的动态库，因为MacOSX的库系统自带，那些诸如iPhoneOS，AppleTVOS，WatchOS这些设备要用的动态库，也只是在设备上真正运行的时候才需要，编译的时候只需要一些简单的信息，符号表啥的，编译通过就好了，真正到设备上去跑的时候才真正需要整个动态库的二进制文件。 <br />
+所以为了节省Xcode的体积，苹果创造了一种tbd文件，用作替代那些设备SDK下的动态库，这里我们以<code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CFNetwork.framework</code>这个动态Framework库为例，进入到CFNetwork.framework目录下你会看到一个<strong>CFNetwork.tbd</strong>文件，cat下</p>
+
+<pre><code>---
+archs:           [ armv7, armv7s, arm64 ]
+platform:        ios
+install-name:    /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+current-version: 758.3.15
+exports:         
+  - archs:           [ armv7, armv7s, arm64 ]
+    symbols:         [ '$ld$hide$os4.3$_NSHTTPCookieComment', '$ld$hide$os4.3$_NSHTTPCookieCommentURL', 
+                       '$ld$hide$os4.3$_NSHTTPCookieDiscard', '$ld$hide$os4.3$_NSHTTPCookieDomain', 
+                       '$ld$hide$os4.3$_NSHTTPCookieExpires', '$ld$hide$os4.3$_NSHTTPCookieLocationHeader', 
+                       '$ld$hide$os4.3$_NSHTTPCookieManagerAcceptPolicyChangedNotification', 
+                       '$ld$hide$os4.3$_NSHTTPCookieManagerCookiesChangedNotification', 
+                       '$ld$hide$os4.3$_NSHTTPCookieMaximumAge', '$ld$hide$os4.3$_NSHTTPCookieName', 
+                       '$ld$hide$os4.3$_NSHTTPCookieOriginURL', '$ld$hide$os4.3$_NSHTTPCookiePath', 
+                       '$ld$hide$os4.3$_NSHTTPCookiePort', '$ld$hide$os4.3$_NSHTTPCookieSecure', 
+                       '$ld$hide$os4.3$_NSHTTPCookieValue', '$ld$hide$os4.3$_NSHTTPCookieVersion', 
+                       '$ld$hide$os4.3$_NSNetServicesErrorCode', '$ld$hide$os4.3$_NSNetServicesErrorDomain',
+
+.......
+</code></pre>
+
+<p>你会发现其实tbd文件就是一个文本文件，其中包含架构信息，以及在真实运行时候二进制所在的位置，以及包含了动态库的符号表还有类的一些信息，这些信息在编译阶段足够了。<strong><em>通过通过这种技术，可以大大减少所有的设备SDK的二进制动态库的体积，其中包含MacOSX，iPhoneOS，AppleTVOS，WatchOS</em></strong>。 <br />
+模拟器SDK的动态库依然是原始的动态库二进制文件,这点你可以进到<code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/CFNetwork.framework</code>目录下进行验证。</p>
+
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://geeklu.com">卢克</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2016-03-31">2016-03-31</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="/categories/#Programming" title="Programming">Programming</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+  <a href="/tags/#iOS" title="iOS">iOS</a>&nbsp;
+  
+  <a href="/tags/#Xcode" title="Xcode">Xcode</a>&nbsp;
+  
+</span>
+
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ysuiboli'; // required: replace example with your forum shortname
+    var disqus_url = 'http://geeklu.com/2016/03/tbd-file/';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://geeklu.com/2016/03/ios-voiceover-programming-guide/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+        </article>
+      </div>
+
+    <footer>
+        <p><small>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> | Copyright 2008 - 2016 by <a href="http://geeklu.com/about/">Luke</a> | <span class="label label-info">2016-06-30 23:08:43 CST</span></small></p>
+    </footer>
+
+    </div>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '//UA-12936429-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
