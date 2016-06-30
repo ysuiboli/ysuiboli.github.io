@@ -1,5 +1,6 @@
-＃ ＊＊转自＊＊
+Ref:https://site.douban.com/196781/widget/notes/12161495/note/264946576/
 
+转自：
 此Git库为我的博客  [Luke's Homepage](http://geeklu.com)。
 使用Jekyll进行搭建，Jekyll是一个Ruby写的程序，可以将Markdown写的文章通过模板生成最终的Html静态文件。
 博客文章的评论功能使用了Disqus。
