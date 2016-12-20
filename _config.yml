@@ -9,7 +9,7 @@
 title: XpressTravel
 description: > # this means to ignore newlines until "baseurl:"
   I don't know what I want, but I know what I don't want.
-baseurl: "/ysuiboli.github.io" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://github.com/ysuiboli/ysuiboli.github.io" # the base hostname & protocol for your site
 github_username:  ysuiboli
 
