@@ -4,11 +4,13 @@ title: "InfoWindow UI Update"
 date: 2016-12-19 20:59 +0800
 categories: issue map android
 ---
+## Issue
 Google map上进行二次开发，点击地图上的marker显示InfoWindow，InfoWindow中需要根据经纬度请求地理位置信息展示出来，经纬度转地理信息（逆地理编码）可以根据Google提供的Api:
 `http://maps.google.com/maps/api/geocode/json?latlng=31.0,121.0&language=zh-CN&sensor=false`获取到。
 
 接下来问题来了，当获取到地理位置信息在回调中更新UI时发现怎么也更新不了。
 
+## Answer
 No.1尝试，首先考虑是否在主线程中，使用了runOnUiThread方法并且打印当前线程确保当前在UI线程中
 {% highlight android %}
 TextView infoWindowLocation;
