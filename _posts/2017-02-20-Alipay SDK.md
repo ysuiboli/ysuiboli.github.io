@@ -14,6 +14,7 @@ categories: android sdk payment ali
 若app仅用于测试且未上线前需使用支付宝提供的***沙箱环境***，扫码下载对应的[沙箱版钱包][Alipay-sandbox]
 
 ![沙箱版钱包二维码](../css/pics/alipay/Alipay_sandbox.png)
+![沙箱版钱包二维码](https://github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/alipay/Alipay_sandbox.png)
 
 [签名工具下载][Alipay-Sign-Tool]
 
