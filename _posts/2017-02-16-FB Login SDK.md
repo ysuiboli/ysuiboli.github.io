@@ -36,7 +36,7 @@ repositories {
 
 - 添加meta-data:
 
-```
+```xml
 <application android:label="@string/app_name" ...>
     ...
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
@@ -101,7 +101,7 @@ repositories {
 ```LoginManager.getInstance().registerCallback（..., ...）```
 登录调用
 
-```
+```java
 List<String> permissions;
 
 permissions = Arrays.asList("email", "user_likes", "user_status", "user_photos", "user_birthday", "public_profile", "user_friends");
@@ -126,7 +126,7 @@ LoginManager.getInstance().logInWithReadPermissions(activity, permissions);
 
 若需获取更详细的信息可通过以下方式查询获取：
 
-```
+```java
 	GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {

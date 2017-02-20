@@ -12,7 +12,8 @@ Google map上进行二次开发，点击地图上的marker显示InfoWindow，Inf
 
 ## Answer
 No.1尝试，首先考虑是否在主线程中，使用了runOnUiThread方法并且打印当前线程确保当前在UI线程中
-{% highlight android %}
+
+```java
 TextView infoWindowLocation;
 
 getLocation(lat, lng, new CallBack() {
@@ -30,7 +31,7 @@ Log.e(TAG, "thread:"+Thread.currentThread().toString());
                     });
                 }
             });
-{% endhighlight %}                    
+```                 
 
 试了下UI没有刷，打印`infoWindowLocation.getText()`发现值是有更新的。
 

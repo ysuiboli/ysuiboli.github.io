@@ -143,7 +143,21 @@ public class LoginActivity extends AppCompatActivity implements IUiListener
 0 | 成功
 100030 | 没有权限
 
+[更多响应码说明][more-resp-code-define]
+
+- 混淆
+
+```
+-keep class com.tencent.open.TDialog$*
+-keep class com.tencent.open.TDialog$* {*;}
+-keep class com.tencent.open.PKDialog
+-keep class com.tencent.open.PKDialog {*;}
+-keep class com.tencent.open.PKDialog$*
+-keep class com.tencent.open.PKDialog$* {*;}
+```
+
 
 [tencent-open-platform]: http://op.open.qq.com
 [qq-login-sdk]: http://wiki.open.qq.com/wiki/mobile/SDK下载
 [qq-login-sdk-api]: http://wiki.open.qq.com/wiki/创建并配置工程
+[more-resp-code-define]: http://wiki.open.qq.com/wiki/mobile/公共返回码说明

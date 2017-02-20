@@ -14,8 +14,8 @@ No.1 网上查找需要添加网络权限：
 
 检查AndroidManifest.xml中的网络相关的权限是有添加的
 
-```
-<!-- 网络相关权限 -->
+```xml
+	<!-- 网络相关权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -36,7 +36,8 @@ No.4 无意中换了一个5.x系统的机器测试到捕获到的异常不一样
 `connectivityManager.setProcessDefaultNetwork(net);`	
 
 全局搜索发现代码中在监听网络状态的广播中确实有作这样的设置：
-{% highlight java %}
+
+```java
 private ConnectivityStatus getConnectivityStatus(final Context context) {
         final String service = Context.CONNECTIVITY_SERVICE;
         final ConnectivityManager manager = (ConnectivityManager) context.getSystemService(service);
@@ -66,6 +67,6 @@ private ConnectivityStatus getConnectivityStatus(final Context context) {
 
         return ConnectivityStatus.OFFLINE;
     }
-{% endhighlight %}  
+```
 
 这也解释得通为啥第一次使用数据网络请求是正常的，连接过一次Wi-Fi后就无法使用数据网络了。这段代码的添加已经不记得，查找提交记录发现是自己几个月前添加到，估计当时考虑到节省数据流量只通过网络访问。最后，将其中设定的只允许通过Wi-Fi访问的限制注释掉就OK了。
