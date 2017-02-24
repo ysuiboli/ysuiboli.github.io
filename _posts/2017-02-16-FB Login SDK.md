@@ -163,4 +163,28 @@ LoginManager.getInstance().logInWithReadPermissions(activity, permissions);
 keytool -exportcert -alias YOUR_RELEASE_KEY_ALIAS(别名) -keystore YOUR_RELEASE_KEY_PATH（key文件） | openssl sha1 -binary | openssl base64
 ```
 
+#### Issues And Answers
+issue1:
+
+登录时反馈这样的信息：
+This app is still in development mode, and you don't have access to it. Switch to a registered test user or ask an app admin for permissions.
+
+Answer:
+
+Facebook当前登录的账号需是创建App的账号
+
+或者
+
+将App设置为public（试了不起作用不知道是不是哪个步骤错了）
+http://stackoverflow.com/questions/30085246/app-not-setup-this-app-is-still-in-development-mode
+
+issue2:
+
+Invalid key hash.  ...
+
+Answer:
+
+如果按照官方指导生成仍然抱着个错误，可能是使用 获取Hash值命令 key文件的路径错了
+
+
 [FB-Login-SDK]: https://developers.facebook.com/docs/facebook-login/android
