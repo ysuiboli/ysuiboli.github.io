@@ -45,3 +45,8 @@ No.4尝试，在同事的提醒下，会不会和Google的刷新有关，于是�
 `http://stackoverflow.com/questions/26383464/how-can-i-update-contents-into-infowindowadapter`
 
 找到与所遇问题相符的第一个链接，在第一个链接中找到了第二个链接并发现`marker.showInfoWindow();`方法，添加在上述代码片段中`infoWindowLocation.setText("lalala");`后面，UI更新了！
+
+
+###### 附：
+Google地理编码API：
+`http://maps.google.com/maps/api/geocode/json?address=上海市浦东新区&sensor=false`

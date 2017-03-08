@@ -19,6 +19,7 @@ categories: android sdk share wechat
 #### 3.接入SDK
 
 - module下build.gradle添加：
+
 ```
 dependencies {
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.0.2'
@@ -54,7 +55,7 @@ dependencies {
 ```java
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
-    public static final String APP_ID = "待应用审核通过填入";
+    public static final String APP_ID = "待应用审核通过填入生成的APP_ID";
     private IWXAPI iwxapi;
 
     @Override
@@ -77,19 +78,30 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         Bundle bundle = new Bundle();
         switch (baseResp.errCode){
             case BaseResp.ErrCode.ERR_OK:
-                //分享成功
-                Toast.makeText(App.getContext(), "分享成功", Toast.LENGTH_SHORT).show();
-                finish();
+                if(baseResp.getType() == 1) {
+                    //登录授权成功
+                    Message msg = Message.obtain();
+                    msg.obj = (SendAuth.Resp)baseResp;
+                    WeChatLoginBiz.handler.sendMessage(msg);
+                }else if(baseResp.getType() == 2) {
+                    //分享成功
+                    Toast.makeText(App.getContext(), "分享成功", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case BaseResp.ErrCode.ERR_USER_CANCEL:
-                //分享取消
-                Toast.makeText(App.getContext(), "取消了分享", Toast.LENGTH_SHORT).show();
+                if(baseResp.getType() == 1){
+                    //登录用户未授权
+                }else if(baseResp.getType() == 2) {
+                    //分享取消
+                    Toast.makeText(App.getContext(), "取消了分享", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case BaseResp.ErrCode.ERR_AUTH_DENIED:
-                //分享拒绝
+                //拒绝
 
                 break;
         }
+        finish();
     }
 }
 ```
