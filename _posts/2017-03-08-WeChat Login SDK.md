@@ -12,6 +12,8 @@ categories: android sdk login
 
 填写项目信息时有一项需注意 <mark>应用签名</mark>, 此签名需下载微信的签名工具 [签名工具][wechat-signation]
 
+###### 注：不同于微信的分享到朋友、分享到朋友圈，登录和支付功能需要申请开发者资质且需缴纳费用，目前是300元/年审核认证费。
+
 #### 2.SDK 接入（AS）
 - module下的build.gradle中添加：
 

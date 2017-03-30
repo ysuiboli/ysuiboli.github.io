@@ -57,7 +57,9 @@ categories: android sdk payment ali
 见[Alipay Demo](#link_alipay_demo)。
 
 需注意的是，在调用请求支付接口前需要添加以下代码进入沙箱测试环境：
+
 ```EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);```
+
 否则会弹窗提示  <mark>系统繁忙，请稍后重试。(ALI40247)</mark>  (签名错误)
 
 沙箱环境下的开发，有一个买家帐号和卖家帐号，均是自动生成以供测试。demo中的APPID应填写沙箱环境的APPID，而非创建应用的APPID（上线包用此）
