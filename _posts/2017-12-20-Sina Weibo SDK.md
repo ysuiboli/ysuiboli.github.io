@@ -48,20 +48,20 @@ categories: android login weibo
 
 ### SDK接入流程
 
-![](https://raw.github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_img2.jpg)
+![](https://raw.githubusercontent.com/ysuiboli/ysuiboli.github.io/master/css/pics/sina_weibo/weibo_img2.jpg)
 
 
 ### 网站配置
 
 #### 1.填写基本信息后，并配置授权回调链接后，可以使用授权登录
 
-![](https://raw.github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_web_config1.png)
+![](https://raw.githubusercontent.com/ysuiboli/ysuiboli.github.io/master/css/pics/sina_weibo/weibo_web_config1.png)
 
-![](https://raw.github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_web_config2.png)
+![](https://raw.githubusercontent.com/ysuiboli/ysuiboli.github.io/master/css/pics/sina_weibo/weibo_web_config2.png)
 
 #### 2.添加测试账户后，可正常调用Sina Weibo API
 
-![](https://raw.github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_web_config3.png)
+![](https://raw.githubusercontent.com/ysuiboli/ysuiboli.github.io/master/css/pics/sina_weibo/weibo_web_config3.png)
 
 #### 3.完善图1中基本信息，app上国内主流应用市场，通过审核后，非测试用户也可以正常使用Sina Weibo API功能。
 
