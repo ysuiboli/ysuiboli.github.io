@@ -15,7 +15,7 @@ categories: android login weibo
 
 可以获取同样使用该应用的好友，可额外获取30%的关系链（未使用新版SDK3.0的应用，只能获取同授权该应用的好友关系，这点与facebook和twitter的授权机制相同）
 
-![](../css/pics/sina_weibo/weibo_img1.jpg)
+![](https://github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_img1.jpg)
 
 #### 2.授权升级
 
@@ -48,20 +48,20 @@ categories: android login weibo
 
 ### SDK接入流程
 
-![](../css/pics/sina_weibo/weibo_img2.png)
+![](https://github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_img2.jpg)
 
 
 ### 网站配置
 
 #### 1.填写基本信息后，并配置授权回调链接后，可以使用授权登录
 
-![](../css/pics/sina_weibo/weibo_web_config1.png)
+![](https://github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_web_config1.png)
 
-![](../css/pics/sina_weibo/weibo_web_config2.png)
+![](https://github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_web_config2.png)
 
 #### 2.添加测试账户后，可正常调用Sina Weibo API
 
-![](../css/pics/sina_weibo/weibo_web_config3.png)
+![](https://github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_web_config3.png)
 
 #### 3.完善图1中基本信息，app上国内主流应用市场，通过审核后，非测试用户也可以正常使用Sina Weibo API功能。
 
