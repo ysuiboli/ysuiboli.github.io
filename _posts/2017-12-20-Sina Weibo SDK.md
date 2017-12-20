@@ -48,7 +48,7 @@ categories: android login weibo
 
 ### SDK接入流程
 
-![](https://raw.githubusercontent.com/ysuiboli/ysuiboli.github.io/master/css/pics/sina_weibo/weibo_img2.jpg)
+![](https://raw.githubusercontent.com/ysuiboli/ysuiboli.github.io/master/css/pics/sina_weibo/weibo_img2.png)
 
 
 ### 网站配置
