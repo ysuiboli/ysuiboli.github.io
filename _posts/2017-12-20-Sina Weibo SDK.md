@@ -15,7 +15,7 @@ categories: android login weibo
 
 可以获取同样使用该应用的好友，可额外获取30%的关系链（未使用新版SDK3.0的应用，只能获取同授权该应用的好友关系，这点与facebook和twitter的授权机制相同）
 
-![](https://raw.github.com/ysuiboli/ysuiboli.github.io/blob/master/css/pics/sina_weibo/weibo_img1.jpg)
+![](https://raw.githubusercontent.com/ysuiboli/ysuiboli.github.io/master/css/pics/sina_weibo/weibo_img1.jpg)
 
 #### 2.授权升级
 
