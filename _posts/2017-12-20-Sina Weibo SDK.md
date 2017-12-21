@@ -67,6 +67,8 @@ categories: android login weibo
 
 #### 4.调用API错误码，参考链接[Error Code][Error_Code]
 
+#### 5.[常见问题][QA_link]
+
 ### 代码集成
 
 #### Step1.
@@ -191,8 +193,14 @@ AccessTokenKeeper.clear(App.getContext());
 参考链接[微博API][weibo_api]
 
 
+#### Scope
+
+参考链接[Scope授权范围][scope_link]
+
 
 
 [office_link]:http://open.weibo.com/wiki/移动客户端接入
 [Error_Code]:http://open.weibo.com/wiki/Error_code
 [weibo_api]:http://open.weibo.com/wiki/微博API
+[scope_link]:http://open.weibo.com/wiki/Scope
+[QA_link]:http://open.weibo.com/wiki/常见问题
